@@ -13,4 +13,5 @@ public class BookResponse {
     private final String localDate;
     private final String introduce;
     private final String category;
+    private final String link;
 }
