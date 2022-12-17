@@ -1,6 +1,6 @@
 package com.example.mbook.domain.chat.service;
 
-import com.example.mbook.domain.chat.controller.dto.ChatRoomDto;
+import com.example.mbook.domain.chat.controller.payload.response.ChatRoomResponse;
 import com.example.mbook.domain.chat.entity.ChatRoom;
 import com.example.mbook.domain.chat.repository.ChatRepository;
 import com.example.mbook.domain.chat.repository.ChatRoomRepository;
@@ -18,29 +18,29 @@ public class ChatRoomService {
     private final ChatRoomRepository chatRoomRepository;
 
     @Transactional
-    public ChatRoomDto createRoom(String roomName){
+    public ChatRoomResponse createRoom(String roomName){
         ChatRoom chatRoom = new ChatRoom(roomName);
         chatRoomRepository.save(chatRoom);
-        return ChatRoomDto.builder()
+        return ChatRoomResponse.builder()
                 .roomId(chatRoom.getId())
                 .roomName(chatRoom.getRoomName())
                 .build();
     }
 
     @Transactional
-    public ChatRoomDto findRoom(Long roomId){
+    public ChatRoomResponse findRoom(Long roomId){
         ChatRoom chatRoom = chatRoomRepository.findById(roomId)
                 .orElseThrow(() -> new IllegalArgumentException("not found room"));
-        return ChatRoomDto.builder()
+        return ChatRoomResponse.builder()
                 .roomId(chatRoom.getId())
                 .roomName(chatRoom.getRoomName())
                 .build();
     }
 
     @Transactional
-    public List<ChatRoomDto> findAllRoom(){
+    public List<ChatRoomResponse> findAllRoom(){
         List<ChatRoom> allRoom = (List<ChatRoom>) chatRoomRepository.findAll();
-        return allRoom.stream().map(room -> new ChatRoomDto(
+        return allRoom.stream().map(room -> new ChatRoomResponse(
                 room.getId(),
                 room.getRoomName()
         )).collect(Collectors.toList());

@@ -1,4 +1,4 @@
-package com.example.mbook.domain.chat.controller.dto;
+package com.example.mbook.domain.chat.controller.payload.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ChatRoomDto {
+public class ChatRoomResponse {
     private Long roomId;
     private String roomName;
 }
