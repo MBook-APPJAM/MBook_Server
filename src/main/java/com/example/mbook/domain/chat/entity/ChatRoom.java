@@ -19,4 +19,8 @@ public class ChatRoom {
 
     @Column
     private String roomName;
+
+    public ChatRoom(String roomName){
+        this.roomName = roomName;
+    }
 }
