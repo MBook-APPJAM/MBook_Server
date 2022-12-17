@@ -31,6 +31,8 @@ public class Book {
 
     private String category;
 
+    private String link;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -42,7 +44,7 @@ public class Book {
     private List<BookReview> bookReviews;
 
     @Builder
-    public Book(String title, String content, String imageUrl, String localDate, String introduce, User user, String category){
+    public Book(String title, String content, String imageUrl, String localDate, String introduce, User user, String category,String link){
         this.title = title;
         this.content = content;
         this.imageUrl = imageUrl;
@@ -50,5 +52,6 @@ public class Book {
         this.introduce = introduce;
         this.user = user;
         this.category = category;
+        this.link = link;
     }
 }
