@@ -14,7 +14,7 @@ public class UserFacade {
 
     public User getCurrentUser() {
         String accountId = SecurityContextHolder.getContext().getAuthentication().getName();
-        return getUserByAccountId(accountId);
+        return getUserByEmail(accountId);
     }
 
     public User getUserById(Long id){
@@ -23,7 +23,7 @@ public class UserFacade {
 
     }
 
-    public User getUserByAccountId(String nickName) {
+    public User getUserByNickName(String nickName) {
         return userRepository.findUserByNickName(nickName)
                 .orElseThrow(() -> new IllegalArgumentException("유저를 찾을 수 없습니다."));
     }
