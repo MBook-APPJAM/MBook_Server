@@ -12,4 +12,7 @@ import lombok.NoArgsConstructor;
 public class ChatRoomResponse {
     private Long roomId;
     private String roomName;
+    private String tag;
+    private String info;
+    private String imageUrl;
 }

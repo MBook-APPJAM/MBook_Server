@@ -21,6 +21,9 @@ public class ChatRoom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String roomName;
+    private String tag;
+    private String info;
+    private String imageUrl;
 
     Set<WebSocketSession> sessions = new HashSet<>();
 

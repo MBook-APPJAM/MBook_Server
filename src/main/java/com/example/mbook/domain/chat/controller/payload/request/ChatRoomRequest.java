@@ -5,4 +5,7 @@ import lombok.Getter;
 @Getter
 public class ChatRoomRequest {
     private String roomName;
+    private String tag;
+    private String info;
+    private String imageUrl;
 }

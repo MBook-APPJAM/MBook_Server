@@ -24,6 +24,9 @@ public class ChatRoomService {
         return ChatRoomResponse.builder()
                 .roomId(chatRoom.getId())
                 .roomName(chatRoom.getRoomName())
+                .tag(chatRoom.getTag())
+                .info(chatRoom.getInfo())
+                .imageUrl(chatRoom.getImageUrl())
                 .build();
     }
 
@@ -34,6 +37,9 @@ public class ChatRoomService {
         return ChatRoomResponse.builder()
                 .roomId(chatRoom.getId())
                 .roomName(chatRoom.getRoomName())
+                .tag(chatRoom.getTag())
+                .info(chatRoom.getInfo())
+                .imageUrl(chatRoom.getImageUrl())
                 .build();
     }
 
@@ -42,7 +48,10 @@ public class ChatRoomService {
         List<ChatRoom> allRoom = (List<ChatRoom>) chatRoomRepository.findAll();
         return allRoom.stream().map(room -> new ChatRoomResponse(
                 room.getId(),
-                room.getRoomName()
+                room.getRoomName(),
+                room.getTag(),
+                room.getInfo(),
+                room.getImageUrl()
         )).collect(Collectors.toList());
     }
 }
