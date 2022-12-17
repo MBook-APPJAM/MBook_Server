@@ -27,7 +27,7 @@ spring:
       atk: ${ACCESSTOKEN_LIVE}
       rtk: ${REFRESHTOKEN_LIVE}
 
-    jpa:
-      hibernate:
-        ddl-auto: update
-      show-sql: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
