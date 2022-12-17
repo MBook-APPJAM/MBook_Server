@@ -1,9 +1,6 @@
 package com.example.mbook.domain.user.service;
 
-import com.example.mbook.domain.user.dto.LoginRequest;
-import com.example.mbook.domain.user.dto.EmailPasswordRequest;
-import com.example.mbook.domain.user.dto.SignupRequest;
-import com.example.mbook.domain.user.dto.UserResponse;
+import com.example.mbook.domain.user.dto.*;
 import com.example.mbook.domain.user.entity.User;
 import com.example.mbook.domain.user.facade.UserFacade;
 import com.example.mbook.domain.user.repository.UserRepository;
@@ -11,6 +8,7 @@ import com.example.mbook.global.mail.dto.MailRequest;
 import com.example.mbook.global.mail.entity.Mail;
 import com.example.mbook.global.mail.repository.MailRepository;
 import com.example.mbook.global.mail.service.MailService;
+import com.example.mbook.global.s3.facade.S3Facade;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
+    private final S3Facade s3Facade;
     private final UserFacade userFacade;
     private final MailRepository mailRepository;
     private final UserRepository userRepository;
@@ -44,7 +43,8 @@ public class UserServiceImpl implements UserService{
         User user = User.builder()
                 .nickName(request.getNickName())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword())).build();
+                .password(passwordEncoder.encode(request.getPassword()))
+                .imageUrl(request.getImageUrl()).build();
 
         userRepository.save(user);
     }
@@ -95,5 +95,56 @@ public class UserServiceImpl implements UserService{
         mailRepository.delete(mail);
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void setPasswords(PasswordRequest request){
+        User user = userFacade.getCurrentUser();
+
+        if(!passwordEncoder.matches(request.getOriginalPassword(), user.getPassword())){
+            throw new IllegalStateException("원래 비밀번호가 맞지 않습니다.");
+        }
+
+        if(!request.getNewPassword().equals(request.getNewPasswordValid())){
+            throw new IllegalStateException("변경하는 비밀번호가 맞지 않습니다.");
+        }
+
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+
+    }
+
+    @Override
+    @Transactional
+    public void setUser(UserRequest request) {
+
+        User user = userFacade.getCurrentUser();
+
+        user.setUser(request.getNickName());
+        userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void leaveUser() {
+
+        User user = userFacade.getCurrentUser();
+
+        s3Facade.delUser(user);
+        userRepository.delete(user);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserInfoResponse getUser(){
+
+        User user = userFacade.getCurrentUser();
+
+        return UserInfoResponse.builder()
+                .userId(user.getId())
+                .nickName(user.getNickName())
+                .imgUrl(user.getImageUrl())
+                .build();
     }
 }
