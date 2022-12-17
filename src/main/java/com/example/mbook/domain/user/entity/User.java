@@ -4,6 +4,8 @@ import com.example.mbook.domain.book.entity.Book;
 import com.example.mbook.domain.feed.entity.BookLove;
 import com.example.mbook.domain.feed.entity.MovieLove;
 import com.example.mbook.domain.movie.entity.Movie;
+import com.example.mbook.domain.review.entity.BookReview;
+import com.example.mbook.domain.review.entity.MovieReview;
 import com.example.mbook.global.mail.entity.Mail;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -47,6 +49,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<MovieLove> movieLoves;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<BookReview> bookReviews;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<MovieReview> movieReviews;
 
     @Builder
     public User(String nickName, String email, String password, String imageUrl){
