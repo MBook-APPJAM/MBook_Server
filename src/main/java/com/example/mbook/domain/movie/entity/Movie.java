@@ -31,8 +31,6 @@ public class Movie {
 
     private String category;
 
-    private Double average;
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -44,7 +42,7 @@ public class Movie {
     private List<MovieReview> movieReviews;
 
     @Builder
-    public Movie(String title, String content, String imageUrl, String localDate, String introduce, User user, String category){
+    public Movie(String title, String content, String imageUrl, String localDate, String introduce, User user, String category, String link){
         this.title = title;
         this.content = content;
         this.imageUrl = imageUrl;
@@ -52,6 +50,7 @@ public class Movie {
         this.introduce = introduce;
         this.user = user;
         this.category = category;
+        this.link = link;
     }
 
     public void setAverage(Double average){

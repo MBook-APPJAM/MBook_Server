@@ -35,7 +35,8 @@ public class MovieServiceImpl implements MovieService {
                 .imageUrl(request.getImageUrl())
                 .localDate(request.getLocalDate())
                 .introduce(request.getIntroduce())
-                .user(user).build());
+                .user(user)
+                .link(request.getLink()).build());
     }
 
     @Override
@@ -48,7 +49,8 @@ public class MovieServiceImpl implements MovieService {
                 .id(movie.getId())
                 .imageUrl(movie.getImageUrl())
                 .localDate(movie.getLocalDate())
-                .introduce(movie.getIntroduce()).build();
+                .introduce(movie.getIntroduce())
+                .link(movie.getLink()).build();
     }
 
     @Transactional(readOnly = true)

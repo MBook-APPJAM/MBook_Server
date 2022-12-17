@@ -14,4 +14,5 @@ public class MovieResponse {
     private final String introduce;
     private final Double grade;
     private final String category;
+    private final String link;
 }

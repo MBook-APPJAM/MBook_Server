@@ -36,7 +36,8 @@ public class BookServiceImpl implements BookService{
                 .localDate(request.getLocalDate())
                 .introduce(request.getIntroduce())
                 .category(request.getCategory())
-                .user(user).build());
+                .user(user)
+                .link(request.getLink()).build());
     }
 
     @Override
@@ -49,7 +50,8 @@ public class BookServiceImpl implements BookService{
                 .id(book.getId())
                 .imageUrl(book.getImageUrl())
                 .localDate(book.getLocalDate())
-                .introduce(book.getIntroduce()).build();
+                .introduce(book.getIntroduce())
+                .link(book.getLink()).build();
     }
 
     @Transactional(readOnly = true)
