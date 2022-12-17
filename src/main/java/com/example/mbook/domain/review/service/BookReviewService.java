@@ -14,4 +14,6 @@ public interface BookReviewService {
     BookReviewLists myBookReview();
 
     BookReviewLists otherBookReview(Long id);
+
+    BookReviewLists popularList();
 }

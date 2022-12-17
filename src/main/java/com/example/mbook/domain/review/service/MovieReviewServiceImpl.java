@@ -95,6 +95,19 @@ public class MovieReviewServiceImpl implements MovieReviewService{
         return new MovieReviewLists(movieReviewLists);
     }
 
+    @Override
+    public MovieReviewLists popularList() {
+        List<MovieReview> movieReviews = movieReviewRepository.findAll(Sort.by(Sort.Direction.DESC, "grade"));
+        List<MovieReviewList> movieReviewLists = new ArrayList<>();
+
+        for(MovieReview movieReview : movieReviews){
+            MovieReviewList dto = MovieReviewList.builder()
+                    .title(movieReview.getMovie().getTitle()).build();
+            movieReviewLists.add(dto);
+        }
+        return new MovieReviewLists(movieReviewLists);
+    }
+
     private void userMath(MovieReview movie) {
         User user = userFacade.getCurrentUser();
         if (movie.getUser().getEmail().equals(user.getEmail())) {
