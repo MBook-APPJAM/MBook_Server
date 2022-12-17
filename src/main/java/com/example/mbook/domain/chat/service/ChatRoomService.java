@@ -18,8 +18,8 @@ public class ChatRoomService {
     private final ChatRoomRepository chatRoomRepository;
 
     @Transactional
-    public ChatRoomResponse createRoom(String roomName){
-        ChatRoom chatRoom = new ChatRoom(roomName);
+    public ChatRoomResponse createRoom(String roomName, String tag, String info, String imageUrl){
+        ChatRoom chatRoom = new ChatRoom(roomName, tag, info, imageUrl);
         chatRoomRepository.save(chatRoom);
         return ChatRoomResponse.builder()
                 .roomId(chatRoom.getId())

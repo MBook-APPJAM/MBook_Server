@@ -25,7 +25,7 @@ public class ChatRoomController {
 
     @PostMapping("/chat/room")
     public ChatRoomResponse createRoom(@RequestBody ChatRoomRequest request){
-        return chatRoomService.createRoom(request.getRoomName());
+        return chatRoomService.createRoom(request.getRoomName(), request.getTag(), request.getInfo(), request.getImageUrl());
     }
 
 }
