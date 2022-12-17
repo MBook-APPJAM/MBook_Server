@@ -27,7 +27,10 @@ public class ChatRoom {
 
     Set<WebSocketSession> sessions = new HashSet<>();
 
-    public ChatRoom(String roomName){
+    public ChatRoom(String roomName, String tag, String info, String imageUrl){
         this.roomName = roomName;
+        this.tag = tag;
+        this.info = info;
+        this.imageUrl = imageUrl;
     }
 }
