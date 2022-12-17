@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserResponse login(LoginRequest request) {
 
-        User user = userFacade.getUserByAccountId(request.getEmail());
+        User user = userFacade.getUserByEmail(request.getEmail());
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new IllegalStateException("비밀번호가 맞지 않습니다.");
