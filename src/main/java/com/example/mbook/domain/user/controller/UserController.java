@@ -1,9 +1,8 @@
 package com.example.mbook.domain.user.controller;
 
-import com.example.mbook.domain.user.dto.LoginRequest;
-import com.example.mbook.domain.user.dto.SignupRequest;
-import com.example.mbook.domain.user.dto.UserResponse;
+import com.example.mbook.domain.user.dto.*;
 import com.example.mbook.domain.user.service.UserService;
+import com.example.mbook.global.mail.dto.MailRequest;
 import com.example.mbook.global.secuirty.auth.AuthDetails;
 import com.example.mbook.global.secuirty.jwt.JwtProvider;
 import com.example.mbook.global.secuirty.jwt.dto.TokenResponse;
@@ -40,9 +39,51 @@ public class UserController {
     @Operation(summary = "토큰 재발급")
     @PostMapping("/reissue")
     public TokenResponse reissue(
-            @AuthenticationPrincipal AuthDetails authDetails
-    ){
+            @AuthenticationPrincipal AuthDetails authDetails){
         UserResponse userResponse = UserResponse.of(authDetails.getUser());
         return jwtProvider.reissueAtk(userResponse);
     }
+
+    @Operation(summary = "회원가입 이메일 인증")
+    @PostMapping("/email")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void signupEmail(@RequestBody MailRequest request) throws Exception {
+        userService.signupEmail(request);
+    }
+
+    @Operation(summary = "비밀번호 찾기-이메일 입력")
+    @PostMapping("/lost/password")
+    public void mail(@Valid @RequestBody MailRequest dto)throws Exception{
+        userService.lostPassword(dto);
+    }
+
+    @Operation(summary = "비밀번호 변경-토큰")
+    @PatchMapping("/password")
+    public void setPassword( @Valid @RequestBody PasswordRequest request)
+    {
+        userService.setPasswords(request);
+    }
+
+    @Operation(summary = "이메일-비밀번호 찾기")
+    @PatchMapping("/lost/password")
+    public void setEmailPassword(@Valid @RequestBody EmailPasswordRequest request){
+        userService.setPasswordEmail(request);
+    }
+
+    @Operation(summary = "내 정보 수정하기")
+    @PatchMapping("/modify")
+    public void setUser(@RequestBody UserRequest request)
+    {
+        userService.setUser(request);
+    }
+
+    @Operation(summary = "회원 탈퇴하기")
+    @DeleteMapping("/leave")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void leaveUser(){ userService.leaveUser();}
+
+    @Operation(summary = "내 정보 불러오기")
+    @GetMapping()
+    public UserInfoResponse myPage(){ return userService.getUser();}
+
 }
