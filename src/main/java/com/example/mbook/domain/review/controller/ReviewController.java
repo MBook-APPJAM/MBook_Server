@@ -86,5 +86,13 @@ public class ReviewController {
         return bookService.otherBookReview(id);
     }
 
+    @GetMapping("/book/popular")
+    public BookReviewLists bookPopularList(){
+        return bookService.popularList();
+    }
 
+    @GetMapping("/movie/popular")
+    public BookReviewLists movieBookPopularList(){
+        return bookService.popularList();
+    }
 }

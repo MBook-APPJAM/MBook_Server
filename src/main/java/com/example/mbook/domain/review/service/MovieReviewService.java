@@ -13,4 +13,6 @@ public interface MovieReviewService {
     MovieReviewLists myMovieReview();
 
     MovieReviewLists otherMovieReview(Long id);
+
+    MovieReviewLists popularList();
 }

@@ -94,6 +94,18 @@ public class BookReviewServiceImpl implements BookReviewService{
         return new BookReviewLists(bookReviewLists);
     }
 
+    @Override
+    public BookReviewLists popularList() {
+        List<BookReview> bookReviews = bookReviewRepository.findAll(Sort.by(Sort.Direction.DESC, "grade"));
+        List<BookReviewList> bookReviewLists = new ArrayList<>();
+        for(BookReview bookReview : bookReviews){
+            BookReviewList dto = BookReviewList.builder()
+                    .title(bookReview.getBook().getTitle()).build();
+            bookReviewLists.add(dto);
+        }
+        return new BookReviewLists(bookReviewLists);
+    }
+
     private void userMath(BookReview book) {
         User user = userFacade.getCurrentUser();
         if (book.getUser().getEmail().equals(user.getEmail())) {
