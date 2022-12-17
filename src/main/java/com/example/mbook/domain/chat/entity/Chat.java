@@ -21,5 +21,11 @@ public class Chat {
     private Long id;
     private Long roomId;
     private String sender;
-    private String messenger;
+    private String message;
+
+    public Chat(Long roomId, String message, String sender){
+        this.message = message;
+        this.roomId = roomId;
+        this.sender = sender;
+    }
 }
