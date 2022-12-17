@@ -39,7 +39,7 @@ public class ChatRoomService {
 
     @Transactional
     public List<ChatRoomDto> findAllRoom(){
-        List<ChatRoom> allRoom = chatRoomRepository.findAll();
+        List<ChatRoom> allRoom = (List<ChatRoom>) chatRoomRepository.findAll();
         return allRoom.stream().map(room -> new ChatRoomDto(
                 room.getId(),
                 room.getRoomName()
