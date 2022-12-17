@@ -63,25 +63,25 @@ public class ReviewController {
     }
 
     @Operation(summary = "나의 영화 리뷰 보기")
-    @DeleteMapping("/movie/my")
+    @GetMapping("/movie/my")
     public MovieReviewLists myMovie() {
         return movieService.myMovieReview();
     }
 
     @Operation(summary = "나의 책 리뷰 보기")
-    @DeleteMapping("/book/my")
+    @GetMapping("/book/my")
     public BookReviewLists myBook() {
         return bookService.myBookReview();
     }
 
     @Operation(summary = "다른사람 영화 리뷰 보기")
-    @DeleteMapping("/{userId}")
+    @GetMapping("/movie/{userId}")
     public MovieReviewLists otherMovie(@PathVariable(name = "userId")Long id) {
         return movieService.otherMovieReview(id);
     }
 
     @Operation(summary = "다른사람 책 리뷰 보기")
-    @DeleteMapping("/{userId}")
+    @GetMapping("/book/{userId}")
     public BookReviewLists otherBook(@PathVariable(name = "userId")Long id) {
         return bookService.otherBookReview(id);
     }
