@@ -18,13 +18,13 @@ public class ChatService {
     public void enter(ChatRequest request, SimpMessagingTemplate template){
         Chat chat = new Chat(request.getRoomId(), request.getSender() + "님이 참가하였습니다.", request.getSender());
         chatRepository.save(chat);
-        template.convertAndSend("/topic/chat/room" + request.getRoomId(), chat);
+        template.convertAndSend("/sub/chat/room" + request.getRoomId(), chat);
     }
 
     @Transactional
     public void sendMessage(ChatRequest request, SimpMessagingTemplate template){
         Chat chat = new Chat(request.getRoomId(), request.getMessage(), request.getSender());
         chatRepository.save(chat);
-        template.convertAndSend("/topic/chat/room" + request.getRoomId(), chat);
+        template.convertAndSend("/sub/chat/room" + request.getRoomId(), chat);
     }
 }
