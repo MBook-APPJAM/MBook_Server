@@ -20,7 +20,6 @@ public class Chat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long roomId;
-    private MessageType type;
     private String sender;
     private String messenger;
 }
