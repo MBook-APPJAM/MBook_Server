@@ -31,6 +31,10 @@ public class Movie {
 
     private String category;
 
+    private Double average;
+
+    private String link;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
