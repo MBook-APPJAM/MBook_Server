@@ -1,6 +1,7 @@
 package com.example.mbook.domain.book.entity;
 
 import com.example.mbook.domain.feed.entity.BookLove;
+import com.example.mbook.domain.review.entity.BookReview;
 import com.example.mbook.domain.user.entity.User;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -36,6 +37,9 @@ public class Book {
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
     private List<BookLove> bookLoves;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
+    private List<BookReview> bookReviews;
 
     @Builder
     public Book(String title, String content, String imageUrl, String localDate, String introduce, User user, String category){
