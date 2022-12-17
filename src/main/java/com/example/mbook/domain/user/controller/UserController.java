@@ -1,9 +1,6 @@
 package com.example.mbook.domain.user.controller;
 
-import com.example.mbook.domain.user.dto.LoginRequest;
-import com.example.mbook.domain.user.dto.EmailPasswordRequest;
-import com.example.mbook.domain.user.dto.SignupRequest;
-import com.example.mbook.domain.user.dto.UserResponse;
+import com.example.mbook.domain.user.dto.*;
 import com.example.mbook.domain.user.service.UserService;
 import com.example.mbook.global.mail.dto.MailRequest;
 import com.example.mbook.global.secuirty.auth.AuthDetails;
@@ -60,10 +57,33 @@ public class UserController {
         userService.lostPassword(dto);
     }
 
+    @Operation(summary = "비밀번호 변경-토큰")
+    @PatchMapping("/password")
+    public void setPassword( @Valid @RequestBody PasswordRequest request)
+    {
+        userService.setPasswords(request);
+    }
+
     @Operation(summary = "이메일-비밀번호 찾기")
     @PatchMapping("/lost/password")
     public void setEmailPassword(@Valid @RequestBody EmailPasswordRequest request){
         userService.setPasswordEmail(request);
     }
+
+    @Operation(summary = "내 정보 수정하기")
+    @PatchMapping("/modify")
+    public void setUser(@RequestBody UserRequest request)
+    {
+        userService.setUser(request);
+    }
+
+    @Operation(summary = "회원 탈퇴하기")
+    @DeleteMapping("/leave")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void leaveUser(){ userService.leaveUser();}
+
+    @Operation(summary = "내 정보 불러오기")
+    @GetMapping()
+    public UserInfoResponse myPage(){ return userService.getUser();}
 
 }

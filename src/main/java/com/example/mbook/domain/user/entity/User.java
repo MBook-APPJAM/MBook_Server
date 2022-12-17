@@ -23,6 +23,8 @@ public class User {
 
     private String password;
 
+    private String imageUrl;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
@@ -31,12 +33,15 @@ public class User {
     private List<Mail> mails;
 
     @Builder
-    public User(String nickName, String email, String password){
+    public User(String nickName, String email, String password, String imageUrl){
         this.nickName = nickName;
         this.email = email;
         this.password = password;
         this.role = Role.ROLE_USER;
+        this.imageUrl = imageUrl;
     }
+
+    public void userProfileChange(String imageUrl){this.imageUrl = imageUrl;}
 
     public void setUser(String nickName){
         this.nickName = nickName;
