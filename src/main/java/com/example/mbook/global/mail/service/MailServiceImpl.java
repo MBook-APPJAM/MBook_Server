@@ -64,7 +64,7 @@ public class MailServiceImpl implements MailService{
                 "\t\t\t\t\t<table style=\"background-color:#fff;border-collapse:collapse;border-spacing:0;;font-family:'Malgun Gothic','Lucida Grande','Lucida Sans','Lucida Sans Unicode',Arial,Helvetica,Verdana,sans-serif;font-size:12px;text-align:left;width:720px\">\n" +
                 "                        <tbody>\n" +
                 "                            <tr>\n" +
-                "                                <img style=\"width:720px;height:180px;\" src=\"https://cdn.discordapp.com/attachments/822309850700054548/1031186200612048927/TD.jpg\"/>\n" +
+                "                                <img style=\"width:720px;height:180px;\" src=\"https://media.discordapp.net/attachments/822309850700054548/1053727739703726190/Frame_2.jpg?width=1118&height=248\"/>\n" +
                 "                            </tr>\n" +
                 "                            <tr>\n" +
                 "\t\t\t\t\t\t\t<td style=\"color:#999\">\n" +
@@ -182,7 +182,7 @@ public class MailServiceImpl implements MailService{
                 "\t\t\t\t\t<table style=\"background-color:#fff;border-collapse:collapse;border-spacing:0;;font-family:'Malgun Gothic','Lucida Grande','Lucida Sans','Lucida Sans Unicode',Arial,Helvetica,Verdana,sans-serif;font-size:12px;text-align:left;width:720px\">\n" +
                 "                        <tbody>\n" +
                 "                            <tr>\n" +
-                "                                <img style=\"width:720px;height:180px;\" src=\"https://cdn.discordapp.com/attachments/822309850700054548/1031186200612048927/TD.jpg\"/>\n" +
+                "                                <img style=\"width:720px;height:180px;\" src=\"https://media.discordapp.net/attachments/822309850700054548/1053727739703726190/Frame_2.jpg?width=1118&height=248\"/>\n" +
                 "                            </tr>\n" +
                 "                            <tr>\n" +
                 "\t\t\t\t\t\t\t<td style=\"color:#999\">\n" +
