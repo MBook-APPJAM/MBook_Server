@@ -147,4 +147,17 @@ public class UserServiceImpl implements UserService{
                 .imgUrl(user.getImageUrl())
                 .build();
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public UserInfoResponse getOtherUser(Long id){
+
+        User user = userFacade.getUserById(id);
+
+        return UserInfoResponse.builder()
+                .userId(user.getId())
+                .nickName(user.getNickName())
+                .imgUrl(user.getImageUrl())
+                .build();
+    }
 }

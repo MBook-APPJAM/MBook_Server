@@ -86,4 +86,8 @@ public class UserController {
     @GetMapping()
     public UserInfoResponse myPage(){ return userService.getUser();}
 
+    @Operation(summary = "다른사람 정보 불러오기")
+    @GetMapping("/{userId}")
+    public UserInfoResponse otherUser(@PathVariable(name = "userId")Long id){ return userService.getOtherUser(id);}
+
 }

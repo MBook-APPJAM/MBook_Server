@@ -24,4 +24,6 @@ public interface UserService {
     void leaveUser();
 
     UserInfoResponse getUser();
+
+    UserInfoResponse getOtherUser(Long id);
 }
