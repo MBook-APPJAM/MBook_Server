@@ -31,8 +31,6 @@ public class Book {
 
     private String category;
 
-    private String link;
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -53,5 +51,9 @@ public class Book {
         this.user = user;
         this.category = category;
         this.link = link;
+    }
+
+    public void setAverage(double average){
+        this.average = average;
     }
 }

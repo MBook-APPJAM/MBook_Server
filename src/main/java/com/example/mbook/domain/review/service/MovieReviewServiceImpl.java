@@ -38,6 +38,12 @@ public class MovieReviewServiceImpl implements MovieReviewService{
                 .grade(request.getGrade())
                 .user(user)
                 .movie(movie).build());
+        if(movie.getAverage() == 0){
+            movie.setAverage(request.getGrade());
+        }
+        else {
+            movie.setAverage((movie.getAverage() + request.getGrade()) / 2);
+        }
     }
 
     @Override

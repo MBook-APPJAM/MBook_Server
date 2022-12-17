@@ -37,6 +37,12 @@ public class BookReviewServiceImpl implements BookReviewService{
                 .grade(request.getGrade())
                 .user(user)
                 .book(book).build());
+        if(book.getAverage() == 0){
+            book.setAverage(request.getGrade());
+        }
+        else {
+            book.setAverage((book.getAverage() + request.getGrade()) / 2);
+        }
     }
 
     @Override
