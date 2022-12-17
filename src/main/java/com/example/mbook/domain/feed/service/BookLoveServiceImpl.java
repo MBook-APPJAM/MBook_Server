@@ -2,6 +2,7 @@ package com.example.mbook.domain.feed.service;
 
 import com.example.mbook.domain.book.entity.Book;
 import com.example.mbook.domain.book.facade.BookFacade;
+import com.example.mbook.domain.feed.controller.response.BookLoveResponse;
 import com.example.mbook.domain.feed.entity.BookLove;
 import com.example.mbook.domain.feed.repository.BookLoveRepository;
 import com.example.mbook.domain.user.entity.User;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -45,5 +47,16 @@ public class BookLoveServiceImpl implements BookLoveService {
                 bookLoveRepository.delete(b);
             }
         }
+    }
+
+    @Override
+    public List<BookLoveResponse> bookLoveList() {
+        User user = userFacade.getCurrentUser();
+        List<BookLove> bookLoves = bookLoveRepository.findByUser(user);
+        return bookLoves.stream().map(book -> new BookLoveResponse(
+                book.getId(),
+                book.getUser(),
+                book.getBook()
+        )).collect(Collectors.toList());
     }
 }

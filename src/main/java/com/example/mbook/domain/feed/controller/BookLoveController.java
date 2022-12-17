@@ -1,11 +1,14 @@
 package com.example.mbook.domain.feed.controller;
 
+import com.example.mbook.domain.feed.controller.response.BookLoveResponse;
 import com.example.mbook.domain.feed.service.BookLoveService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "book_love", description = "책 북마크 API 입니다.")
 @RestController
@@ -26,6 +29,11 @@ public class BookLoveController {
     @DeleteMapping("/like/cancel/{bookId}")
     public void wishCancel(@PathVariable(name = "bookId") Long bookId) {
         bookLoveService.bookLikeCancel(bookId);
+    }
+
+    @GetMapping("/like/list")
+    public List<BookLoveResponse> list(){
+        return bookLoveService.bookLoveList();
     }
 
 }
