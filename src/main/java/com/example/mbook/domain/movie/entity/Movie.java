@@ -31,6 +31,8 @@ public class Movie {
 
     private String category;
 
+    private Double average;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -50,5 +52,9 @@ public class Movie {
         this.introduce = introduce;
         this.user = user;
         this.category = category;
+    }
+
+    public void setAverage(Double average){
+        this.average = average;
     }
 }
